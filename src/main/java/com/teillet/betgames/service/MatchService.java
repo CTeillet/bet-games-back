@@ -34,7 +34,7 @@ public class MatchService {
     private final Logger logger = LoggerFactory.getLogger(MatchService.class);
     private final MatchRepository matchRepository;
     private final ParameterRepository parameterRepository;
-    @Value("${TOKEN_HEADER}")
+    @Value("pandascore.token.header")
     private String TOKEN_HEADER;
 
     public MatchService(MatchRepository matchRepository, ParameterRepository parameterRepository) {

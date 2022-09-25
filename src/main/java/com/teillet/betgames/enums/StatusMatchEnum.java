@@ -8,9 +8,11 @@ public enum StatusMatchEnum {
     POSTPONED("POSTPONED");
 
     private final String value;
+
     StatusMatchEnum(String value) {
         this.value = value;
     }
+
     public String getValue() {
         return value;
     }

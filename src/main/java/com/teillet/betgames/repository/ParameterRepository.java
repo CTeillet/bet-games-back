@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ParameterRepository extends JpaRepository<Parameter, String> {
     Parameter findByName(ParameterEnum name);
+
 }

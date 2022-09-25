@@ -2,10 +2,15 @@ package com.teillet.betgames.model;
 
 import com.teillet.betgames.enums.SportEnum;
 import com.teillet.betgames.enums.StatusMatchEnum;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.Objects;
 

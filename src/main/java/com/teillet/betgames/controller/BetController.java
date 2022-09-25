@@ -21,20 +21,18 @@ public class BetController {
     @PostMapping("/bets")
     public ResponseEntity<String> postBets(@RequestParam Long idMatch, @RequestParam Long idBettor, @RequestParam String winnerTeam,
                                            @RequestParam float rating, @RequestParam float amount) {
-         if(betService.addBet(idMatch, idBettor, winnerTeam, rating, amount)) {
-             return ResponseEntity.ok("Bet added");
-         }
-         return ResponseEntity.badRequest().body("Bet not added");
+        if (betService.addBet(idMatch, idBettor, winnerTeam, rating, amount)) {
+            return ResponseEntity.ok("Bet added");
+        }
+        return ResponseEntity.badRequest().body("Bet not added");
     }
 
     @DeleteMapping("/bets")
     public ResponseEntity<String> deleteBets(@RequestParam Long idBet) {
-        if(betService.deleteBet(idBet)) {
+        if (betService.deleteBet(idBet)) {
             return ResponseEntity.ok("Bet deleted");
         }
         return ResponseEntity.badRequest().body("Bet not deleted");
     }
-
-
 
 }

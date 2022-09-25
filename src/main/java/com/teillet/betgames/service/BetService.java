@@ -2,10 +2,12 @@ package com.teillet.betgames.service;
 
 import com.teillet.betgames.enums.ResultBetEnum;
 import com.teillet.betgames.enums.StatusMatchEnum;
-import com.teillet.betgames.model.*;
+import com.teillet.betgames.model.Bet;
+import com.teillet.betgames.model.Bettor;
+import com.teillet.betgames.model.Match;
 import com.teillet.betgames.repository.BetRepository;
-import com.teillet.betgames.repository.MatchRepository;
 import com.teillet.betgames.repository.BettorRepository;
+import com.teillet.betgames.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

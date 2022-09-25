@@ -7,5 +7,4 @@ public interface BetRepository extends JpaRepository<Bet, Long> {
 
     Bet findByBetId(Long betId);
 
-
 }
