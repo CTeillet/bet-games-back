@@ -1,5 +1,4 @@
-
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,37 +12,50 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "embed_url",
-    "raw_url"
+    "english",
+    "official",
+    "russian"
 })
 @Generated("jsonschema2pojo")
-public class English {
+public class Streams {
 
-    @JsonProperty("embed_url")
-    private Object embedUrl;
-    @JsonProperty("raw_url")
-    private Object rawUrl;
+    @JsonProperty("english")
+    private English english;
+    @JsonProperty("official")
+    private Official official;
+    @JsonProperty("russian")
+    private Russian russian;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("embed_url")
-    public Object getEmbedUrl() {
-        return embedUrl;
+    @JsonProperty("english")
+    public English getEnglish() {
+        return english;
     }
 
-    @JsonProperty("embed_url")
-    public void setEmbedUrl(Object embedUrl) {
-        this.embedUrl = embedUrl;
+    @JsonProperty("english")
+    public void setEnglish(English english) {
+        this.english = english;
     }
 
-    @JsonProperty("raw_url")
-    public Object getRawUrl() {
-        return rawUrl;
+    @JsonProperty("official")
+    public Official getOfficial() {
+        return official;
     }
 
-    @JsonProperty("raw_url")
-    public void setRawUrl(Object rawUrl) {
-        this.rawUrl = rawUrl;
+    @JsonProperty("official")
+    public void setOfficial(Official official) {
+        this.official = official;
+    }
+
+    @JsonProperty("russian")
+    public Russian getRussian() {
+        return russian;
+    }
+
+    @JsonProperty("russian")
+    public void setRussian(Russian russian) {
+        this.russian = russian;
     }
 
     @JsonAnyGetter

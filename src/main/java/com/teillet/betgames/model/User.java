@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import java.util.Objects;
 
 @Entity
@@ -14,11 +16,12 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Bettor {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "bettor_id", updatable = false, nullable = false)
-    private Long bettorId;
+    @Column(name = "user_id", updatable = false, nullable = false)
+    private Long userId;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -26,16 +29,19 @@ public class Bettor {
     @Column(nullable = false)
     private String password;
 
+    @Email
     private String email;
+
 
     private String firstName;
 
     private String lastName;
 
     @Column(nullable = false)
+    @Min(0)
     private Float amount;
 
-    public Bettor(String username, String password, String email, String firstName, String lastName) {
+    public User(String username, String password, String email, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -48,8 +54,8 @@ public class Bettor {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Bettor bettor = (Bettor) o;
-        return bettorId != null && Objects.equals(bettorId, bettor.bettorId);
+        User user = (User) o;
+        return userId != null && Objects.equals(userId, user.userId);
     }
 
     @Override

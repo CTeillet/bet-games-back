@@ -19,9 +19,9 @@ public class BetController {
     }
 
     @PostMapping("/bets")
-    public ResponseEntity<String> postBets(@RequestParam Long idMatch, @RequestParam Long idBettor, @RequestParam String winnerTeam,
+    public ResponseEntity<String> postBets(@RequestParam Long matchId, @RequestParam Long userId, @RequestParam String winnerTeam,
                                            @RequestParam float rating, @RequestParam float amount) {
-        if (betService.addBet(idMatch, idBettor, winnerTeam, rating, amount)) {
+        if (betService.addBet(matchId, userId, winnerTeam, rating, amount)) {
             return ResponseEntity.ok("Bet added");
         }
         return ResponseEntity.badRequest().body("Bet not added");

@@ -2,8 +2,8 @@ package com.teillet.betgames.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.teillet.betgames.dto.PandaScoreMatch;
-import com.teillet.betgames.dto.UpdateMatch;
+import com.teillet.betgames.dto.pandascore.PandaScoreMatch;
+import com.teillet.betgames.dto.pandascore.UpdateMatch;
 import com.teillet.betgames.enums.ParameterEnum;
 import com.teillet.betgames.enums.SportEnum;
 import com.teillet.betgames.enums.StatusMatchEnum;

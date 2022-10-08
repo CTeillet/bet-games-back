@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,37 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "score",
-    "team_id"
+    "opponent",
+    "type"
 })
 @Generated("jsonschema2pojo")
-public class Result {
+public class Opponent {
 
-    @JsonProperty("score")
-    private Integer score;
-    @JsonProperty("team_id")
-    private Integer teamId;
+    @JsonProperty("opponent")
+    private Opponent__1 opponent;
+    @JsonProperty("type")
+    private String type;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("score")
-    public Integer getScore() {
-        return score;
+    @JsonProperty("opponent")
+    public Opponent__1 getOpponent() {
+        return opponent;
     }
 
-    @JsonProperty("score")
-    public void setScore(Integer score) {
-        this.score = score;
+    @JsonProperty("opponent")
+    public void setOpponent(Opponent__1 opponent) {
+        this.opponent = opponent;
     }
 
-    @JsonProperty("team_id")
-    public Integer getTeamId() {
-        return teamId;
+    @JsonProperty("type")
+    public String getType() {
+        return type;
     }
 
-    @JsonProperty("team_id")
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
     @JsonAnyGetter

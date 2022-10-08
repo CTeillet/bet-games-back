@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,50 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
-    "name",
-    "slug"
+    "embed_url",
+    "raw_url"
 })
 @Generated("jsonschema2pojo")
-public class Videogame {
+public class Russian {
 
-    @JsonProperty("id")
-    private Integer id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("slug")
-    private String slug;
+    @JsonProperty("embed_url")
+    private Object embedUrl;
+    @JsonProperty("raw_url")
+    private Object rawUrl;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
+    @JsonProperty("embed_url")
+    public Object getEmbedUrl() {
+        return embedUrl;
     }
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
+    @JsonProperty("embed_url")
+    public void setEmbedUrl(Object embedUrl) {
+        this.embedUrl = embedUrl;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("raw_url")
+    public Object getRawUrl() {
+        return rawUrl;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @JsonProperty("slug")
-    public String getSlug() {
-        return slug;
-    }
-
-    @JsonProperty("slug")
-    public void setSlug(String slug) {
-        this.slug = slug;
+    @JsonProperty("raw_url")
+    public void setRawUrl(Object rawUrl) {
+        this.rawUrl = rawUrl;
     }
 
     @JsonAnyGetter

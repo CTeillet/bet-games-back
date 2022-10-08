@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,22 +14,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "embed_url",
-    "language",
-    "main",
-    "official",
     "raw_url"
 })
 @Generated("jsonschema2pojo")
-public class Streams__1 {
+public class Official {
 
     @JsonProperty("embed_url")
     private String embedUrl;
-    @JsonProperty("language")
-    private String language;
-    @JsonProperty("main")
-    private Boolean main;
-    @JsonProperty("official")
-    private Boolean official;
     @JsonProperty("raw_url")
     private String rawUrl;
     @JsonIgnore
@@ -43,36 +34,6 @@ public class Streams__1 {
     @JsonProperty("embed_url")
     public void setEmbedUrl(String embedUrl) {
         this.embedUrl = embedUrl;
-    }
-
-    @JsonProperty("language")
-    public String getLanguage() {
-        return language;
-    }
-
-    @JsonProperty("language")
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    @JsonProperty("main")
-    public Boolean getMain() {
-        return main;
-    }
-
-    @JsonProperty("main")
-    public void setMain(Boolean main) {
-        this.main = main;
-    }
-
-    @JsonProperty("official")
-    public Boolean getOfficial() {
-        return official;
-    }
-
-    @JsonProperty("official")
-    public void setOfficial(Boolean official) {
-        this.official = official;
     }
 
     @JsonProperty("raw_url")

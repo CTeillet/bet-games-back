@@ -16,6 +16,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
+@Table(name = "bet")
 public class Bet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -42,17 +43,17 @@ public class Bet {
     private Match match;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "bettor_id", nullable = false)
-    private Bettor bettor;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    public Bet(String winnerTeam, float rating, float amount, ResultBetEnum resultBet, LocalDateTime date, Match match, Bettor bettor) {
+    public Bet(String winnerTeam, float rating, float amount, ResultBetEnum resultBet, LocalDateTime date, Match match, User user) {
         this.winnerTeam = winnerTeam;
         this.rating = rating;
         this.amount = amount;
         this.resultBet = resultBet;
         this.date = date;
         this.match = match;
-        this.bettor = bettor;
+        this.user = user;
     }
 
     @Override

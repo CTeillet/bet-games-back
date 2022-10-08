@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.Date;
 import java.util.HashMap;

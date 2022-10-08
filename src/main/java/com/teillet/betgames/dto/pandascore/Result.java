@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,37 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "embed_url",
-    "raw_url"
+    "score",
+    "team_id"
 })
 @Generated("jsonschema2pojo")
-public class Official {
+public class Result {
 
-    @JsonProperty("embed_url")
-    private String embedUrl;
-    @JsonProperty("raw_url")
-    private String rawUrl;
+    @JsonProperty("score")
+    private Integer score;
+    @JsonProperty("team_id")
+    private Integer teamId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("embed_url")
-    public String getEmbedUrl() {
-        return embedUrl;
+    @JsonProperty("score")
+    public Integer getScore() {
+        return score;
     }
 
-    @JsonProperty("embed_url")
-    public void setEmbedUrl(String embedUrl) {
-        this.embedUrl = embedUrl;
+    @JsonProperty("score")
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
-    @JsonProperty("raw_url")
-    public String getRawUrl() {
-        return rawUrl;
+    @JsonProperty("team_id")
+    public Integer getTeamId() {
+        return teamId;
     }
 
-    @JsonProperty("raw_url")
-    public void setRawUrl(String rawUrl) {
-        this.rawUrl = rawUrl;
+    @JsonProperty("team_id")
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
     }
 
     @JsonAnyGetter

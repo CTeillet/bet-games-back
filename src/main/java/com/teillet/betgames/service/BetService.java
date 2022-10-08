@@ -3,10 +3,10 @@ package com.teillet.betgames.service;
 import com.teillet.betgames.enums.ResultBetEnum;
 import com.teillet.betgames.enums.StatusMatchEnum;
 import com.teillet.betgames.model.Bet;
-import com.teillet.betgames.model.Bettor;
+import com.teillet.betgames.model.User;
 import com.teillet.betgames.model.Match;
 import com.teillet.betgames.repository.BetRepository;
-import com.teillet.betgames.repository.BettorRepository;
+import com.teillet.betgames.repository.UserRepository;
 import com.teillet.betgames.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,24 +17,24 @@ public class BetService {
 
     private final BetRepository betRepository;
 
-    private final BettorRepository bettorRepository;
+    private final UserRepository userRepository;
 
     private final MatchRepository matchRepository;
 
-    public BetService(BetRepository betRepository, BettorRepository bettorRepository, MatchRepository matchRepository) {
+    public BetService(BetRepository betRepository, UserRepository userRepository, MatchRepository matchRepository) {
         this.betRepository = betRepository;
-        this.bettorRepository = bettorRepository;
+        this.userRepository = userRepository;
         this.matchRepository = matchRepository;
     }
 
     public boolean addBet(Long idMatch, Long idBettor, String winnerTeam, float rating, float amount) {
         Match match = matchRepository.findById(idMatch).get();
-        Bettor bettor = bettorRepository.findById(idBettor).get();
-        if (match.getStatus().equals(StatusMatchEnum.NOT_STARTED) && bettor.getAmount() >= amount) {
-            Bet bet = new Bet(winnerTeam, rating, amount, ResultBetEnum.NOT_FINISHED, LocalDateTime.now(), match, bettor);
+        User user = userRepository.findById(idBettor).get();
+        if (match.getStatus().equals(StatusMatchEnum.NOT_STARTED) && user.getAmount() >= amount) {
+            Bet bet = new Bet(winnerTeam, rating, amount, ResultBetEnum.NOT_FINISHED, LocalDateTime.now(), match, user);
             betRepository.save(bet);
-            bettor.setAmount(bettor.getAmount() - amount);
-            bettorRepository.save(bettor);
+            user.setAmount(user.getAmount() - amount);
+            userRepository.save(user);
             return true;
         }
         return false;
@@ -43,11 +43,11 @@ public class BetService {
     public boolean deleteBet(Long idBet) {
         Bet bet = betRepository.findByBetId(idBet);
         Match match = bet.getMatch();
-        Bettor bettor = bet.getBettor();
+        User user = bet.getUser();
         if (bet.getResultBet().equals(ResultBetEnum.NOT_FINISHED)) {
             betRepository.delete(bet);
-            bettor.setAmount(bettor.getAmount() + bet.getAmount());
-            bettorRepository.save(bettor);
+            user.setAmount(user.getAmount() + bet.getAmount());
+            userRepository.save(user);
             return true;
         }
         return false;

@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,37 +13,50 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "opponent",
-    "type"
+    "opens_at",
+    "supported",
+    "url"
 })
 @Generated("jsonschema2pojo")
-public class Opponent {
+public class Live {
 
-    @JsonProperty("opponent")
-    private Opponent__1 opponent;
-    @JsonProperty("type")
-    private String type;
+    @JsonProperty("opens_at")
+    private Object opensAt;
+    @JsonProperty("supported")
+    private Boolean supported;
+    @JsonProperty("url")
+    private Object url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("opponent")
-    public Opponent__1 getOpponent() {
-        return opponent;
+    @JsonProperty("opens_at")
+    public Object getOpensAt() {
+        return opensAt;
     }
 
-    @JsonProperty("opponent")
-    public void setOpponent(Opponent__1 opponent) {
-        this.opponent = opponent;
+    @JsonProperty("opens_at")
+    public void setOpensAt(Object opensAt) {
+        this.opensAt = opensAt;
     }
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    @JsonProperty("supported")
+    public Boolean getSupported() {
+        return supported;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    @JsonProperty("supported")
+    public void setSupported(Boolean supported) {
+        this.supported = supported;
+    }
+
+    @JsonProperty("url")
+    public Object getUrl() {
+        return url;
+    }
+
+    @JsonProperty("url")
+    public void setUrl(Object url) {
+        this.url = url;
     }
 
     @JsonAnyGetter

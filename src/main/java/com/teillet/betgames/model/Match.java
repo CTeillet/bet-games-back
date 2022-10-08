@@ -11,6 +11,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,6 +20,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "match")
 public class Match {
     @Id
     @Column(name = "match_id", updatable = false, nullable = false)

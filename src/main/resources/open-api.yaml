@@ -1,0 +1,28 @@
+openapi: "3.0.0"
+info:
+  title: BetGames swagger
+  description: This is the api documentation of BetGames.
+  version: 1.0.0
+servers:
+  - url: http://betgamesback-env.eba-wneafxtm.us-east-1.elasticbeanstalk.com/
+    description: The production API server
+    variables:
+      basePath:
+        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v1`
+        default: v1
+paths:
+  /countries:
+    get:
+      tags:
+        - CountryApi
+      description: "Get countries within iban validator"
+      operationId: "getCountries"
+      responses:
+        '200':
+          description: A list of Country.
+          headers:
+            x-count:
+              description: number of items return
+              schema:
+                type: integer
+                format: int64

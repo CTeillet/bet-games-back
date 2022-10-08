@@ -1,5 +1,5 @@
 
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,50 +13,50 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "opens_at",
-    "supported",
-    "url"
+    "id",
+    "name",
+    "slug"
 })
 @Generated("jsonschema2pojo")
-public class Live {
+public class Videogame {
 
-    @JsonProperty("opens_at")
-    private Object opensAt;
-    @JsonProperty("supported")
-    private Boolean supported;
-    @JsonProperty("url")
-    private Object url;
+    @JsonProperty("id")
+    private Integer id;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("slug")
+    private String slug;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("opens_at")
-    public Object getOpensAt() {
-        return opensAt;
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
     }
 
-    @JsonProperty("opens_at")
-    public void setOpensAt(Object opensAt) {
-        this.opensAt = opensAt;
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @JsonProperty("supported")
-    public Boolean getSupported() {
-        return supported;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    @JsonProperty("supported")
-    public void setSupported(Boolean supported) {
-        this.supported = supported;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @JsonProperty("url")
-    public Object getUrl() {
-        return url;
+    @JsonProperty("slug")
+    public String getSlug() {
+        return slug;
     }
 
-    @JsonProperty("url")
-    public void setUrl(Object url) {
-        this.url = url;
+    @JsonProperty("slug")
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     @JsonAnyGetter

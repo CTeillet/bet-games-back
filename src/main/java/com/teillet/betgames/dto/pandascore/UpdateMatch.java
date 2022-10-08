@@ -1,4 +1,4 @@
-package com.teillet.betgames.dto;
+package com.teillet.betgames.dto.pandascore;
 
 import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
