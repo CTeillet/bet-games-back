@@ -251,7 +251,6 @@
                             <artifactId>BetGames</artifactId>
                             <artifactVersion>0.0.1-SNAPSHOT</artifactVersion>
                             <generateSupportingFiles>false</generateSupportingFiles>
-                            <templateDirectory>${project.basedir}/src/main/resources/swagger-templates</templateDirectory>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
                                 <skipDefaultInterface>true</skipDefaultInterface>
