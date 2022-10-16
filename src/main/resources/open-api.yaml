@@ -1,28 +1,90 @@
-openapi: "3.0.0"
+openapi: 3.0.3
 info:
-  title: BetGames swagger
-  description: This is the api documentation of BetGames.
-  version: 1.0.0
-servers:
-  - url: http://betgamesback-env.eba-wneafxtm.us-east-1.elasticbeanstalk.com/
-    description: The production API server
-    variables:
-      basePath:
-        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v1`
-        default: v1
+  title: BetGames
+  version: '1.0'
+  x-logo:
+    url: ''
+  description: This is the api documentation of BetGames
 paths:
-  /countries:
-    get:
-      tags:
-        - CountryApi
-      description: "Get countries within iban validator"
-      operationId: "getCountries"
+  /user/login:
+    summary: Login the user
+    description: >-
+      This path is used to log the user if the credentials are good, return an
+      error if the credentials are wrong
+    post:
+      tags: []
+      operationId: login-post
+      summary: Login the user
+      description: This operation is used to login the user
+      parameters:
+        - name: password
+          in: query
+          description: The password of the user
+          required: true
+          deprecated: false
+          example: '"123456qwerty!@#"'
+          schema:
+            type: string
+            format: password
+          allowEmptyValue: false
+          x-last-modified: 1665868671171
+        - name: mail-login
+          in: query
+          description: The mail of the user used to login
+          required: true
+          deprecated: false
+          example: '"qwer.tyu@toto.com"'
+          schema:
+            type: string
+            format: email
+          allowEmptyValue: false
+          x-last-modified: 1665868792586
+      requestBody:
+        required: false
       responses:
-        '200':
-          description: A list of Country.
-          headers:
-            x-count:
-              description: number of items return
+        400:
+          description: The email or the password are wrong
+          x-last-modified: 1665869428764
+          headers: {}
+          content:
+            application/json:
+              encoding:
+                response: NOT_CONNECTED
+              example: ''
               schema:
-                type: integer
-                format: int64
+                $ref: '#/components/schemas/connection_status'
+          links: {}
+        200:
+          description: The user is connected
+          x-last-modified: 1665869013995
+          headers: {}
+          content:
+            application/json:
+              encoding:
+                response: CONNECTED
+              example: ''
+              schema:
+                $ref: '#/components/schemas/connection_status'
+          links: {}
+    delete:
+      tags: []
+    x-last-modified: 1665867774437
+components:
+  securitySchemes: {}
+  schemas:
+    connection_status:
+      type: string
+      enum:
+        - CONNECTED
+        - NOT_CONNECTED
+      x-last-modified: 1665870474818
+  headers: {}
+  responses: {}
+  parameters: {}
+tags: []
+servers:
+  - url: https://Betgamesback-env.eba-wneafxtm.us-east-1.elasticbeanstalk.com
+    description: The AWS where the back is autodeploy at each commit
+    variables: {}
+    x-last-modified: 1665867471272
+security: []
