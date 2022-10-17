@@ -153,6 +153,12 @@
             <artifactId>auth0-spring-security-api</artifactId>
             <version>1.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -244,7 +250,7 @@
                             <output>${project.basedir}</output>
                             <generatorName>spring</generatorName>
                             <apiPackage>com.teillet.betgames.api</apiPackage>
-                            <modelPackage>com.teillet.betgamesdto</modelPackage>
+                            <modelPackage>com.teillet.betgames.api.dto</modelPackage>
                             <generateApiTests>true</generateApiTests>
                             <generateModelTests>true</generateModelTests>
                             <groupId>com.teillet.</groupId>

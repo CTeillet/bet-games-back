@@ -1,7 +1,6 @@
 package com.teillet.betgames.controller;
 
 
-import com.teillet.betgames.parameter.ParameterRepository;
 import com.teillet.betgames.match.MatchService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
