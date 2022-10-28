@@ -1,0 +1,303 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "BetGames",
+    "version": "1.0",
+    "description": "This is the api documentation of BetGames",
+    "x-logo": {
+      "url": ""
+    }
+  },
+  "servers": [
+    {
+      "url": "https://Betgamesback-env.eba-wneafxtm.us-east-1.elasticbeanstalk.com",
+      "description": "The AWS where the back is autodeploy at each commit",
+      "x-last-modified": 1665867471272
+    }
+  ],
+  "paths": {
+    "/user/login": {
+      "summary": "Login the user",
+      "description": "This path is used to log the user if the credentials are good, return an error if the credentials are wrong",
+      "post": {
+        "parameters": [
+          {
+            "deprecated": false,
+            "example": "qwer.tyu@toto.com",
+            "name": "mail",
+            "description": "The mail of the user used to login",
+            "schema": {
+              "format": "email",
+              "type": "string"
+            },
+            "in": "query",
+            "required": true,
+            "allowEmptyValue": false,
+            "x-last-modified": 1665868792586
+          },
+          {
+            "deprecated": false,
+            "example": "\"123456qwerty!@#\"",
+            "name": "password",
+            "description": "The password of the user",
+            "schema": {
+              "format": "password",
+              "type": "string"
+            },
+            "in": "query",
+            "required": true,
+            "allowEmptyValue": false,
+            "x-last-modified": 1665868671171
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjM0ZjQ2ODU1MzU4MDAxM2Q0NzQwZCIsImlhdCI6MTY2NTg2NjIyOCwiZXhwIjoxNjY1OTUyNjI4fQ.8Y0YV7mYKjZc3qZ3jK6W1C5O5x2b3qo3c\""
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The user is connected",
+            "x-last-modified": 1665869013995
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "\"Wrong email or password\"",
+                      "x-last-modified": 1665869428764
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The email or the password are wrong",
+            "x-last-modified": 1665869428764
+          }
+        },
+        "operationId": "login",
+        "summary": "Login the user",
+        "description": "This operation is used to login the user"
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "\"User disconnected\""
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The user is disconnected",
+            "x-last-modified": 1665869013995
+          }
+        },
+        "operationId": "logout"
+      },
+      "x-last-modified": 1665867774437
+    }
+  },
+  "components": {
+    "schemas": {
+      "Match": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": [
+              0
+            ]
+          },
+          "teamA": {
+            "type": "string",
+            "example": [
+              "G2"
+            ]
+          },
+          "coteA": {
+            "type": "number",
+            "example": [
+              1.3
+            ]
+          },
+          "teamB": {
+            "type": "string",
+            "example": [
+              "FNC"
+            ]
+          },
+          "coteB": {
+            "type": "number",
+            "example": [
+              5.3
+            ]
+          },
+          "date": {
+            "type": "string",
+            "example": [
+              "2020-10-10T12:00:00Z"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": [
+              "finished"
+            ]
+          },
+          "scoreA": {
+            "type": "number",
+            "example": [
+              3
+            ]
+          },
+          "scoreB": {
+            "type": "number",
+            "example": [
+              0
+            ]
+          }
+        },
+        "example": {
+          "id": 0,
+          "teamA": "G2",
+          "coteA": 1.3,
+          "teamB": "FNC",
+          "coteB": 5.3,
+          "date": "2020-10-10T12:00:00Z",
+          "status": "finished",
+          "scoreA": 3,
+          "scoreB": 0
+        },
+        "x-last-modified": 1666642113807
+      },
+      "League": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": [
+              "LEC"
+            ]
+          },
+          "matches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Match"
+            }
+          }
+        },
+        "example": {
+          "name": "LEC",
+          "matches": [
+            {
+              "id": 0,
+              "teamA": "G2",
+              "coteA": 1.3,
+              "teamB": "FNC",
+              "coteB": 5.3,
+              "date": "2020-10-10T12:00:00Z",
+              "status": "finished",
+              "scoreA": 3,
+              "scoreB": 0
+            }
+          ]
+        },
+        "x-last-modified": 1666643448704
+      },
+      "Game": {
+        "type": "object",
+        "example": {
+          "name": "League of Legends",
+          "id": "leagueoflegends",
+          "leagues": [
+            {
+              "name": "LEC",
+              "matches": [
+                {
+                  "id": 0,
+                  "teamA": "G2",
+                  "coteA": 1.3,
+                  "teamB": "FNC",
+                  "coteB": 5.3,
+                  "date": "2020-10-10T12:00:00Z",
+                  "status": "finished",
+                  "scoreA": 3,
+                  "scoreB": 0
+                }
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": [
+              "League of Legends"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "example": [
+              "leagueoflegends"
+            ]
+          },
+          "leagues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": [
+                    "LEC"
+                  ]
+                },
+                "matches": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/League"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-last-modified": 1666644482428,
+        "required": []
+      }
+    },
+    "securitySchemes": {
+      "JWTAuth": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "description": "Example: \n> Authorization: Bearer <token>",
+        "x-last-modified": 1666642244927
+      }
+    },
+    "headers": {},
+    "responses": {},
+    "parameters": {}
+  },
+  "tags": [],
+  "security": []
+}
