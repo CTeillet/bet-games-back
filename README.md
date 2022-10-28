@@ -1,5 +1,8 @@
 # Module back
 
+## OpenAPI spec
+The openapi file is written with the open api builder [openapi-builder](https://www.apibldr.com/) and can be found in the [open-api.json](open-api.json) file.
+
 ## TODO
 
 * Créer le fichier OpenApi et mettre en place la generation autonmatiaue
