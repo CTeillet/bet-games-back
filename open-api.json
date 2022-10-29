@@ -111,9 +111,126 @@
             "x-last-modified": 1665869013995
           }
         },
-        "operationId": "logout"
+        "operationId": "logout",
+        "summary": "Logout the user"
       },
       "x-last-modified": 1665867774437
+    },
+    "/user/account": {
+      "summary": "Manage account",
+      "description": "Create or delete an account",
+      "get": {
+        "parameters": [
+          {
+            "deprecated": false,
+            "name": "userId",
+            "description": "The id of the user we want to obtain",
+            "schema": {
+              "$ref": "#/components/schemas/UserId"
+            },
+            "in": "query",
+            "required": false,
+            "allowEmptyValue": false,
+            "x-last-modified": 1667086117800
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTest"
+                },
+                "example": ""
+              }
+            },
+            "description": "The user has been deleted",
+            "x-last-modified": 1667086041245,
+            "headers": {},
+            "links": {}
+          }
+        },
+        "operationId": "get-user",
+        "summary": "Get the user with the specified id",
+        "description": "Return the user that match the id"
+      },
+      "put": {
+        "parameters": [
+          {
+            "deprecated": false,
+            "name": "userId",
+            "schema": {
+              "$ref": "#/components/schemas/UserId"
+            },
+            "in": "query",
+            "required": true,
+            "allowEmptyValue": false,
+            "x-last-modified": 1667085780834
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTest"
+                }
+              }
+            },
+            "description": "The user has been modified",
+            "x-last-modified": 1667085855632
+          }
+        },
+        "operationId": "modify-user",
+        "summary": "Modify the user with the id",
+        "description": ""
+      },
+      "post": {
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "The user is created",
+            "x-last-modified": 1667085563844
+          }
+        },
+        "operationId": "register-user",
+        "summary": "Create a user",
+        "description": ""
+      },
+      "delete": {
+        "tags": [],
+        "parameters": [
+          {
+            "deprecated": false,
+            "name": "userId",
+            "description": "The id of the user we want to delete",
+            "schema": {
+              "$ref": "#/components/schemas/UserId"
+            },
+            "in": "query",
+            "required": false,
+            "allowEmptyValue": false,
+            "x-last-modified": 1667085897512
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTest"
+                },
+                "example": ""
+              }
+            },
+            "description": "The user has been deleted",
+            "x-last-modified": 1667086041245
+          }
+        },
+        "operationId": "delete-user",
+        "summary": "Delete the user with the specified id"
+      },
+      "x-last-modified": 1667041212307
     }
   },
   "components": {
@@ -224,29 +341,8 @@
         "x-last-modified": 1666643448704
       },
       "Game": {
+        "required": [],
         "type": "object",
-        "example": {
-          "name": "League of Legends",
-          "id": "leagueoflegends",
-          "leagues": [
-            {
-              "name": "LEC",
-              "matches": [
-                {
-                  "id": 0,
-                  "teamA": "G2",
-                  "coteA": 1.3,
-                  "teamB": "FNC",
-                  "coteB": 5.3,
-                  "date": "2020-10-10T12:00:00Z",
-                  "status": "finished",
-                  "scoreA": 3,
-                  "scoreB": 0
-                }
-              ]
-            }
-          ]
-        },
         "properties": {
           "name": {
             "type": "string",
@@ -281,8 +377,154 @@
             }
           }
         },
-        "x-last-modified": 1666644482428,
-        "required": []
+        "example": {
+          "name": "League of Legends",
+          "id": "leagueoflegends",
+          "leagues": [
+            {
+              "name": "LEC",
+              "matches": [
+                {
+                  "id": 0,
+                  "teamA": "G2",
+                  "coteA": 1.3,
+                  "teamB": "FNC",
+                  "coteB": 5.3,
+                  "date": "2020-10-10T12:00:00Z",
+                  "status": "finished",
+                  "scoreA": 3,
+                  "scoreB": 0
+                }
+              ]
+            }
+          ]
+        },
+        "x-last-modified": 1666644482428
+      },
+      "IllegalInputError": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "maximum": 400,
+            "minimum": 400,
+            "type": "integer"
+          }
+        },
+        "x-last-modified": 1667041129034
+      },
+      "UnauthorizedError": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "maximum": 401,
+            "minimum": 401,
+            "type": "integer"
+          }
+        },
+        "x-last-modified": 1667041129698
+      },
+      "ServerError": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "maximum": 599,
+            "minimum": 500,
+            "type": "integer"
+          }
+        },
+        "x-last-modified": 1667041130215
+      },
+      "UserId": {
+        "type": "number",
+        "x-last-modified": 1667084798658
+      },
+      "UserTest": {
+        "description": "This object represents a user with :\n-mail\n-password\n-username\n-firstName\n-lastName\n-birthDate",
+        "required": [
+          "mail",
+          "username",
+          "password",
+          "firstName",
+          "lastName",
+          "birthDate"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": [
+              "toto"
+            ]
+          },
+          "mail": {
+            "type": "string",
+            "example": [
+              "qwerty.uiop@asdf.com"
+            ]
+          },
+          "password": {
+            "type": "string",
+            "example": [
+              "qwertyuiop[1234567890-"
+            ]
+          },
+          "firstName": {
+            "type": "string",
+            "example": [
+              "toto"
+            ]
+          },
+          "lastName": {
+            "type": "string",
+            "example": [
+              "titi"
+            ]
+          },
+          "birthDate": {
+            "type": "string",
+            "example": [
+              "30/10/2022"
+            ]
+          }
+        },
+        "example": {
+          "username": "toto",
+          "mail": "qwerty.uiop@asdf.com",
+          "password": "qwertyuiop[1234567890-",
+          "firstName": "toto",
+          "lastName": "titi",
+          "birthDate": "30/10/2022"
+        },
+        "x-last-modified": 1667086959481
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "schema": {
+          "type": "string"
+        },
+        "description": "Authorization header"
       }
     },
     "securitySchemes": {
@@ -294,7 +536,6 @@
         "x-last-modified": 1666642244927
       }
     },
-    "headers": {},
     "responses": {},
     "parameters": {}
   },

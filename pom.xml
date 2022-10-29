@@ -273,7 +273,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/open-api.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/open-api.yaml</inputSpec>
                             <output>${project.basedir}</output>
                             <generatorName>spring</generatorName>
                             <apiPackage>com.teillet.betgames.api</apiPackage>
