@@ -1,4 +1,4 @@
-package com.teillet.betgames.controller;
+package com.teillet.betgames;
 
 
 import com.teillet.betgames.match.MatchService;

@@ -1,16 +1,16 @@
 package com.teillet.betgames.match;
 
+import com.teillet.betgames.bet.Bet;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -44,6 +44,10 @@ public class Match {
     private String winnerTeam;
 
     private Date date;
+
+    @OneToMany(mappedBy = "match", orphanRemoval = true)
+    @ToString.Exclude
+    private List<Bet> bets = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

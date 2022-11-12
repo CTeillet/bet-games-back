@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AwsTestController {
+
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Void> getRoot() {
         return new ResponseEntity<>(HttpStatus.OK);

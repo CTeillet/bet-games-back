@@ -1,14 +1,20 @@
 package com.teillet.betgames.user;
 
+import com.teillet.betgames.bet.Bet;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +23,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id", updatable = false, nullable = false)
@@ -32,7 +38,6 @@ public class User {
     @Email
     private String email;
 
-
     private String firstName;
 
     private String lastName;
@@ -40,6 +45,10 @@ public class User {
     @Column(nullable = false)
     @Min(0)
     private Float amount;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @ToString.Exclude
+    private List<Bet> bets = new ArrayList<>();
 
     public User(String username, String password, String email, String firstName, String lastName) {
         this.username = username;
@@ -61,5 +70,30 @@ public class User {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
