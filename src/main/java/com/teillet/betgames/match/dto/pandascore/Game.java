@@ -1,215 +1,225 @@
-
 package com.teillet.betgames.match.dto.pandascore;
 
+import com.fasterxml.jackson.annotation.*;
+
+import javax.annotation.Generated;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "begin_at",
-    "complete",
-    "detailed_stats",
-    "end_at",
-    "finished",
-    "forfeit",
-    "id",
-    "length",
-    "match_id",
-    "position",
-    "status",
-    "video_url",
-    "winner",
-    "winner_type"
-})
+@JsonPropertyOrder(
+		{
+				"begin_at",
+				"complete",
+				"detailed_stats",
+				"end_at",
+				"finished",
+				"forfeit",
+				"id",
+				"length",
+				"match_id",
+				"position",
+				"status",
+				"video_url",
+				"winner",
+				"winner_type",
+		}
+)
 @Generated("jsonschema2pojo")
 public class Game {
 
-    @JsonProperty("begin_at")
-    private String beginAt;
-    @JsonProperty("complete")
-    private Boolean complete;
-    @JsonProperty("detailed_stats")
-    private Boolean detailedStats;
-    @JsonProperty("end_at")
-    private String endAt;
-    @JsonProperty("finished")
-    private Boolean finished;
-    @JsonProperty("forfeit")
-    private Boolean forfeit;
-    @JsonProperty("id")
-    private Integer id;
-    @JsonProperty("length")
-    private Integer length;
-    @JsonProperty("match_id")
-    private Integer matchId;
-    @JsonProperty("position")
-    private Integer position;
-    @JsonProperty("status")
-    private String status;
-    @JsonProperty("video_url")
-    private Object videoUrl;
-    @JsonProperty("winner")
-    private Winner__1 winner;
-    @JsonProperty("winner_type")
-    private String winnerType;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	@JsonProperty("begin_at")
+	private String beginAt;
 
-    @JsonProperty("begin_at")
-    public String getBeginAt() {
-        return beginAt;
-    }
+	@JsonProperty("complete")
+	private Boolean complete;
 
-    @JsonProperty("begin_at")
-    public void setBeginAt(String beginAt) {
-        this.beginAt = beginAt;
-    }
+	@JsonProperty("detailed_stats")
+	private Boolean detailedStats;
 
-    @JsonProperty("complete")
-    public Boolean getComplete() {
-        return complete;
-    }
+	@JsonProperty("end_at")
+	private String endAt;
 
-    @JsonProperty("complete")
-    public void setComplete(Boolean complete) {
-        this.complete = complete;
-    }
+	@JsonProperty("finished")
+	private Boolean finished;
 
-    @JsonProperty("detailed_stats")
-    public Boolean getDetailedStats() {
-        return detailedStats;
-    }
+	@JsonProperty("forfeit")
+	private Boolean forfeit;
 
-    @JsonProperty("detailed_stats")
-    public void setDetailedStats(Boolean detailedStats) {
-        this.detailedStats = detailedStats;
-    }
+	@JsonProperty("id")
+	private Integer id;
 
-    @JsonProperty("end_at")
-    public String getEndAt() {
-        return endAt;
-    }
+	@JsonProperty("length")
+	private Integer length;
 
-    @JsonProperty("end_at")
-    public void setEndAt(String endAt) {
-        this.endAt = endAt;
-    }
+	@JsonProperty("match_id")
+	private Integer matchId;
 
-    @JsonProperty("finished")
-    public Boolean getFinished() {
-        return finished;
-    }
+	@JsonProperty("position")
+	private Integer position;
 
-    @JsonProperty("finished")
-    public void setFinished(Boolean finished) {
-        this.finished = finished;
-    }
+	@JsonProperty("status")
+	private String status;
 
-    @JsonProperty("forfeit")
-    public Boolean getForfeit() {
-        return forfeit;
-    }
+	@JsonProperty("video_url")
+	private Object videoUrl;
 
-    @JsonProperty("forfeit")
-    public void setForfeit(Boolean forfeit) {
-        this.forfeit = forfeit;
-    }
+	@JsonProperty("winner")
+	private Winner__1 winner;
 
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
-    }
+	@JsonProperty("winner_type")
+	private String winnerType;
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@JsonIgnore
+	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("length")
-    public Integer getLength() {
-        return length;
-    }
+	@JsonProperty("begin_at")
+	public String getBeginAt() {
+		return beginAt;
+	}
 
-    @JsonProperty("length")
-    public void setLength(Integer length) {
-        this.length = length;
-    }
+	@JsonProperty("begin_at")
+	public void setBeginAt(String beginAt) {
+		this.beginAt = beginAt;
+	}
 
-    @JsonProperty("match_id")
-    public Integer getMatchId() {
-        return matchId;
-    }
+	@JsonProperty("complete")
+	public Boolean getComplete() {
+		return complete;
+	}
 
-    @JsonProperty("match_id")
-    public void setMatchId(Integer matchId) {
-        this.matchId = matchId;
-    }
+	@JsonProperty("complete")
+	public void setComplete(Boolean complete) {
+		this.complete = complete;
+	}
 
-    @JsonProperty("position")
-    public Integer getPosition() {
-        return position;
-    }
+	@JsonProperty("detailed_stats")
+	public Boolean getDetailedStats() {
+		return detailedStats;
+	}
 
-    @JsonProperty("position")
-    public void setPosition(Integer position) {
-        this.position = position;
-    }
+	@JsonProperty("detailed_stats")
+	public void setDetailedStats(Boolean detailedStats) {
+		this.detailedStats = detailedStats;
+	}
 
-    @JsonProperty("status")
-    public String getStatus() {
-        return status;
-    }
+	@JsonProperty("end_at")
+	public String getEndAt() {
+		return endAt;
+	}
 
-    @JsonProperty("status")
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	@JsonProperty("end_at")
+	public void setEndAt(String endAt) {
+		this.endAt = endAt;
+	}
 
-    @JsonProperty("video_url")
-    public Object getVideoUrl() {
-        return videoUrl;
-    }
+	@JsonProperty("finished")
+	public Boolean getFinished() {
+		return finished;
+	}
 
-    @JsonProperty("video_url")
-    public void setVideoUrl(Object videoUrl) {
-        this.videoUrl = videoUrl;
-    }
+	@JsonProperty("finished")
+	public void setFinished(Boolean finished) {
+		this.finished = finished;
+	}
 
-    @JsonProperty("winner")
-    public Winner__1 getWinner() {
-        return winner;
-    }
+	@JsonProperty("forfeit")
+	public Boolean getForfeit() {
+		return forfeit;
+	}
 
-    @JsonProperty("winner")
-    public void setWinner(Winner__1 winner) {
-        this.winner = winner;
-    }
+	@JsonProperty("forfeit")
+	public void setForfeit(Boolean forfeit) {
+		this.forfeit = forfeit;
+	}
 
-    @JsonProperty("winner_type")
-    public String getWinnerType() {
-        return winnerType;
-    }
+	@JsonProperty("id")
+	public Integer getId() {
+		return id;
+	}
 
-    @JsonProperty("winner_type")
-    public void setWinnerType(String winnerType) {
-        this.winnerType = winnerType;
-    }
+	@JsonProperty("id")
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+	@JsonProperty("length")
+	public Integer getLength() {
+		return length;
+	}
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+	@JsonProperty("length")
+	public void setLength(Integer length) {
+		this.length = length;
+	}
 
+	@JsonProperty("match_id")
+	public Integer getMatchId() {
+		return matchId;
+	}
+
+	@JsonProperty("match_id")
+	public void setMatchId(Integer matchId) {
+		this.matchId = matchId;
+	}
+
+	@JsonProperty("position")
+	public Integer getPosition() {
+		return position;
+	}
+
+	@JsonProperty("position")
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
+
+	@JsonProperty("status")
+	public String getStatus() {
+		return status;
+	}
+
+	@JsonProperty("status")
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@JsonProperty("video_url")
+	public Object getVideoUrl() {
+		return videoUrl;
+	}
+
+	@JsonProperty("video_url")
+	public void setVideoUrl(Object videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+	@JsonProperty("winner")
+	public Winner__1 getWinner() {
+		return winner;
+	}
+
+	@JsonProperty("winner")
+	public void setWinner(Winner__1 winner) {
+		this.winner = winner;
+	}
+
+	@JsonProperty("winner_type")
+	public String getWinnerType() {
+		return winnerType;
+	}
+
+	@JsonProperty("winner_type")
+	public void setWinnerType(String winnerType) {
+		this.winnerType = winnerType;
+	}
+
+	@JsonAnyGetter
+	public Map<String, Object> getAdditionalProperties() {
+		return this.additionalProperties;
+	}
+
+	@JsonAnySetter
+	public void setAdditionalProperty(String name, Object value) {
+		this.additionalProperties.put(name, value);
+	}
 }

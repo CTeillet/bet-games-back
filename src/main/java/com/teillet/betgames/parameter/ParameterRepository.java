@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParameterRepository extends JpaRepository<Parameter, String> {
-    Parameter findByName(ParameterEnum name);
-
+	Parameter findByName(ParameterEnum name);
 }

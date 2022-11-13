@@ -21,48 +21,61 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 public class SecurityConfig {
 
-    private final UserRepository userRepository;
+	private final UserRepository userRepository;
 
-    private final JwtTokenFilter jwtTokenFilter;
+	private final JwtTokenFilter jwtTokenFilter;
 
-    public SecurityConfig(UserRepository userRepository, JwtTokenFilter jwtTokenFilter) {
-        this.userRepository = userRepository;
-        this.jwtTokenFilter = jwtTokenFilter;
-    }
+	public SecurityConfig(
+			UserRepository userRepository,
+			JwtTokenFilter jwtTokenFilter
+	) {
+		this.userRepository = userRepository;
+		this.jwtTokenFilter = jwtTokenFilter;
+	}
 
-    @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	@Bean
+	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
+		http
+				.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.authorizeRequests()
-                .mvcMatchers("/").permitAll()
-                .mvcMatchers("/api/").authenticated(); //Example for securing an endpoint
-                //.mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages") //Example for securing an endpoint with roles
+		http
+				.authorizeRequests()
+				.mvcMatchers("/")
+				.permitAll()
+				.mvcMatchers("/api/")
+				.authenticated(); //Example for securing an endpoint
+		//.mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages") //Example for securing an endpoint with roles
 
-        http.exceptionHandling()
-                .authenticationEntryPoint(
-                        (request, response, ex) -> response.sendError(
-                                HttpServletResponse.SC_UNAUTHORIZED,
-                                ex.getMessage()
-                        )
-                );
+		http
+				.exceptionHandling()
+				.authenticationEntryPoint((request, response, ex) ->
+						response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage())
+				);
 
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(
+				jwtTokenFilter,
+				UsernamePasswordAuthenticationFilter.class
+		);
 
-        return http.build();
-    }
+		return http.build();
+	}
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username)
-                .orElseThrow(
-                        () -> new UsernameNotFoundException("User " + username + " not found"));
-    }
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return username ->
+				userRepository
+						.findByUsername(username)
+						.orElseThrow(() ->
+								new UsernameNotFoundException("User " + username + " not found")
+						);
+	}
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
+	@Bean
+	public AuthenticationManager authenticationManager(
+			AuthenticationConfiguration authConfig
+	) throws Exception {
+		return authConfig.getAuthenticationManager();
+	}
 }

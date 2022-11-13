@@ -16,176 +16,84 @@
     }
   ],
   "paths": {
-    "/user/login": {
-      "summary": "Login the user",
-      "description": "This path is used to log the user if the credentials are good, return an error if the credentials are wrong",
-      "post": {
-        "parameters": [
-          {
-            "deprecated": false,
-            "example": "qwer.tyu@toto.com",
-            "name": "mail",
-            "description": "The mail of the user used to login",
-            "schema": {
-              "format": "email",
-              "type": "string"
-            },
-            "in": "query",
-            "required": true,
-            "allowEmptyValue": false,
-            "x-last-modified": 1665868792586
-          },
-          {
-            "deprecated": false,
-            "example": "\"123456qwerty!@#\"",
-            "name": "password",
-            "description": "The password of the user",
-            "schema": {
-              "format": "password",
-              "type": "string"
-            },
-            "in": "query",
-            "required": true,
-            "allowEmptyValue": false,
-            "x-last-modified": 1665868671171
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "token": {
-                      "type": "string",
-                      "example": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjM0ZjQ2ODU1MzU4MDAxM2Q0NzQwZCIsImlhdCI6MTY2NTg2NjIyOCwiZXhwIjoxNjY1OTUyNjI4fQ.8Y0YV7mYKjZc3qZ3jK6W1C5O5x2b3qo3c\""
-                    }
-                  }
-                }
-              }
-            },
-            "description": "The user is connected",
-            "x-last-modified": 1665869013995
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "\"Wrong email or password\"",
-                      "x-last-modified": 1665869428764
-                    }
-                  }
-                }
-              }
-            },
-            "description": "The email or the password are wrong",
-            "x-last-modified": 1665869428764
-          }
-        },
-        "operationId": "login",
-        "summary": "Login the user",
-        "description": "This operation is used to login the user"
-      },
-      "delete": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "\"User disconnected\""
-                    }
-                  }
-                }
-              }
-            },
-            "description": "The user is disconnected",
-            "x-last-modified": 1665869013995
-          }
-        },
-        "operationId": "logout",
-        "summary": "Logout the user"
-      },
-      "x-last-modified": 1665867774437
-    },
-    "/user/account": {
+    "/user": {
       "summary": "Manage account",
       "description": "Create or delete an account",
       "get": {
+        "requestBody": {
+          "description": "The information to modify the user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
         "parameters": [
           {
             "deprecated": false,
-            "name": "userId",
-            "description": "The id of the user we want to obtain",
+            "name": "username",
             "schema": {
-              "$ref": "#/components/schemas/UserId"
+              "$ref": "#/components/schemas/Username"
             },
             "in": "query",
             "required": false,
             "allowEmptyValue": false,
-            "x-last-modified": 1667086117800
+            "x-last-modified": 1668374882580
           }
         ],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserTest"
-                },
-                "example": ""
-              }
-            },
-            "description": "The user has been deleted",
-            "x-last-modified": 1667086041245,
-            "headers": {},
-            "links": {}
+            "description": "The user is created",
+            "x-last-modified": 1667085563844
+          },
+          "400": {
+            "$ref": "#/components/responses/400",
+            "x-last-modified": 1668376811558
           }
         },
         "operationId": "get-user",
         "summary": "Get the user with the specified id",
-        "description": "Return the user that match the id"
+        "description": "Return the user that match the id",
+        "tags": []
       },
       "put": {
-        "parameters": [
-          {
-            "deprecated": false,
-            "name": "userId",
-            "schema": {
-              "$ref": "#/components/schemas/UserId"
-            },
-            "in": "query",
-            "required": true,
-            "allowEmptyValue": false,
-            "x-last-modified": 1667085780834
-          }
-        ],
+        "requestBody": {
+          "description": "The information to modify the user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserTest"
-                }
-              }
-            },
-            "description": "The user has been modified",
-            "x-last-modified": 1667085855632
+            "description": "The user is modified",
+            "x-last-modified": 1667085563844
           }
         },
         "operationId": "modify-user",
         "summary": "Modify the user with the id",
-        "description": ""
+        "description": "",
+        "tags": []
       },
       "post": {
+        "requestBody": {
+          "description": "The information to create the user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
         "tags": [],
         "responses": {
           "200": {
@@ -198,39 +106,107 @@
         "description": ""
       },
       "delete": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsernameRequest"
+              }
+            }
+          },
+          "required": false
+        },
         "tags": [],
-        "parameters": [
-          {
-            "deprecated": false,
-            "name": "userId",
-            "description": "The id of the user we want to delete",
-            "schema": {
-              "$ref": "#/components/schemas/UserId"
-            },
-            "in": "query",
-            "required": false,
-            "allowEmptyValue": false,
-            "x-last-modified": 1667085897512
-          }
-        ],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserTest"
-                },
-                "example": ""
-              }
-            },
-            "description": "The user has been deleted",
-            "x-last-modified": 1667086041245
+            "description": "The user is created",
+            "x-last-modified": 1667085563844
           }
         },
         "operationId": "delete-user",
         "summary": "Delete the user with the specified id"
       },
-      "x-last-modified": 1667041212307
+      "x-last-modified": 1668378193438
+    },
+    "/login": {
+      "summary": "Login the user",
+      "description": "This path is used to log the user if the credentials are good, return an error if the credentials are wrong",
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                },
+                "example": ""
+              }
+            },
+            "description": "The user is connected",
+            "x-last-modified": 1665869013995
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IllegalInputError"
+                },
+                "example": ""
+              }
+            },
+            "description": "The email or the password are wrong",
+            "x-last-modified": 1665869428764
+          }
+        },
+        "operationId": "login",
+        "summary": "Login the user",
+        "description": "This operation is used to login the user",
+        "tags": []
+      },
+      "delete": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The user is disconnected",
+            "x-last-modified": 1665869013995
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IllegalInputError"
+                },
+                "example": ""
+              }
+            },
+            "description": "The email or the password are wrong",
+            "x-last-modified": 1665869428764
+          }
+        },
+        "operationId": "logout",
+        "summary": "Logout the user",
+        "tags": []
+      },
+      "x-last-modified": 1668378201149
     }
   },
   "components": {
@@ -401,65 +377,7 @@
         },
         "x-last-modified": 1666644482428
       },
-      "IllegalInputError": {
-        "required": [
-          "message",
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "maximum": 400,
-            "minimum": 400,
-            "type": "integer"
-          }
-        },
-        "x-last-modified": 1667041129034
-      },
-      "UnauthorizedError": {
-        "required": [
-          "message",
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "maximum": 401,
-            "minimum": 401,
-            "type": "integer"
-          }
-        },
-        "x-last-modified": 1667041129698
-      },
-      "ServerError": {
-        "required": [
-          "message",
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "maximum": 599,
-            "minimum": 500,
-            "type": "integer"
-          }
-        },
-        "x-last-modified": 1667041130215
-      },
-      "UserId": {
-        "type": "number",
-        "x-last-modified": 1667084798658
-      },
-      "UserTest": {
+      "User": {
         "description": "This object represents a user with :\n-mail\n-password\n-username\n-firstName\n-lastName\n-birthDate",
         "required": [
           "mail",
@@ -517,6 +435,182 @@
           "birthDate": "30/10/2022"
         },
         "x-last-modified": 1667086959481
+      },
+      "AuthResponse": {
+        "required": [],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": [
+              "Nono"
+            ]
+          },
+          "accessToken": {
+            "type": "string",
+            "example": [
+              "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjM0ZjQ2ODU1MzU4MDAxM2Q0NzQwZCIsImlhdCI6MTY2NTg2NjIyOCwiZXhwIjoxNjY1OTUyNjI4fQ.8Y0YV7mYKjZc3qZ3jK6W1C5O5x2b3qo3c"
+            ]
+          }
+        },
+        "example": {
+          "username": "Nono",
+          "accessToken": "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjM0ZjQ2ODU1MzU4MDAxM2Q0NzQwZCIsImlhdCI6MTY2NTg2NjIyOCwiZXhwIjoxNjY1OTUyNjI4fQ.8Y0YV7mYKjZc3qZ3jK6W1C5O5x2b3qo3c"
+        },
+        "x-last-modified": 1668371009337
+      },
+      "AuthRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": [
+              "Nono"
+            ]
+          },
+          "password": {
+            "type": "string",
+            "example": [
+              "qwertyuiop"
+            ]
+          }
+        },
+        "example": {
+          "username": "Nono",
+          "password": "qwertyuiop"
+        },
+        "x-last-modified": 1668371091972
+      },
+      "DeleteRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": [
+              "Nono"
+            ]
+          }
+        },
+        "example": {
+          "username": "Nono"
+        },
+        "x-last-modified": 1668374403132
+      },
+      "Username": {
+        "type": "string",
+        "x-last-modified": 1668374772115
+      },
+      "IllegalInputError": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "maximum": 400,
+            "minimum": 400,
+            "type": "integer"
+          }
+        },
+        "x-last-modified": 1668376692970
+      },
+      "UnauthorizedError": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "maximum": 401,
+            "minimum": 401,
+            "type": "integer"
+          }
+        },
+        "x-last-modified": 1668376695816
+      },
+      "ServerError": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "maximum": 599,
+            "minimum": 500,
+            "type": "integer"
+          }
+        },
+        "x-last-modified": 1668376696985
+      },
+      "UsernameRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": [
+              "Nono"
+            ]
+          }
+        },
+        "example": {
+          "username": "Nono"
+        },
+        "x-last-modified": 1668377802118
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Operation succeeded",
+        "x-last-modified": 1668372771596
+      },
+      "400": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IllegalInputError"
+            }
+          }
+        },
+        "description": "Illegal input for operation.",
+        "x-last-modified": 1668376692971
+      },
+      "401": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UnauthorizedError"
+            }
+          }
+        },
+        "description": "Unauthorized access.",
+        "x-last-modified": 1668376695816
+      },
+      "404": {
+        "description": "Entity not found.",
+        "x-last-modified": 1668376693992
+      },
+      "500": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServerError"
+            }
+          }
+        },
+        "description": "Server Error",
+        "x-last-modified": 1668376696986
       }
     },
     "headers": {
@@ -533,10 +627,9 @@
         "bearerFormat": "JWT",
         "type": "http",
         "description": "Example: \n> Authorization: Bearer <token>",
-        "x-last-modified": 1666642244927
+        "x-last-modified": 1668374308746
       }
     },
-    "responses": {},
     "parameters": {}
   },
   "tags": [],

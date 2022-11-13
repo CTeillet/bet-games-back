@@ -17,20 +17,24 @@ import java.util.Objects;
 @NoArgsConstructor
 @Table(name = "parameter")
 public class Parameter {
-    @Id
-    private ParameterEnum name;
-    private Date value;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Parameter parameter = (Parameter) o;
-        return name != null && Objects.equals(name, parameter.name);
-    }
+	@Id
+	private ParameterEnum name;
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+	private Date value;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (
+				o == null || Hibernate.getClass(this) != Hibernate.getClass(o)
+		) return false;
+		Parameter parameter = (Parameter) o;
+		return name != null && Objects.equals(name, parameter.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

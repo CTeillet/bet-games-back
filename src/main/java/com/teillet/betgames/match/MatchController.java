@@ -9,20 +9,19 @@ import java.util.List;
 @RestController
 public class MatchController {
 
-    private final MatchRepository matchRepository;
+	private final MatchRepository matchRepository;
 
-    public MatchController(MatchRepository matchRepository) {
-        this.matchRepository = matchRepository;
-    }
+	public MatchController(MatchRepository matchRepository) {
+		this.matchRepository = matchRepository;
+	}
 
-    @GetMapping("/matches")
-    public List<Match> getMatches() {
-        return matchRepository.findAll();
-    }
+	@GetMapping("/matches")
+	public List<Match> getMatches() {
+		return matchRepository.findAll();
+	}
 
-    @GetMapping("/matches/{matchId}")
-    public Match getMatch(@PathVariable Long matchId) {
-        return matchRepository.findById(matchId).orElse(null);
-    }
-
+	@GetMapping("/matches/{matchId}")
+	public Match getMatch(@PathVariable Long matchId) {
+		return matchRepository.findById(matchId).orElse(null);
+	}
 }

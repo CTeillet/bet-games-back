@@ -8,11 +8,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableEncryptableProperties
-@EnableConfigurationProperties({ CustomProperties.class })
+@EnableConfigurationProperties({CustomProperties.class})
 public class BetGamesApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BetGamesApplication.class, args);
-    }
-
+	public static void main(String[] args) {
+		SpringApplication.run(BetGamesApplication.class, args);
+	}
 }

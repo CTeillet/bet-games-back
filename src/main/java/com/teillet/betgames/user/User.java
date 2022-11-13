@@ -24,76 +24,85 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Table(name = "user")
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "user_id", updatable = false, nullable = false)
-    private Long userId;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "user_id", updatable = false, nullable = false)
+	private Long userId;
 
-    @Column(nullable = false)
-    private String password;
+	@Column(nullable = false, unique = true)
+	private String username;
 
-    @Email
-    private String email;
+	@Column(nullable = false)
+	private String password;
 
-    private String firstName;
+	@Email
+	private String email;
 
-    private String lastName;
+	private String firstName;
 
-    @Column(nullable = false)
-    @Min(0)
-    private Float amount;
+	private String lastName;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    @ToString.Exclude
-    private List<Bet> bets = new ArrayList<>();
+	@Column(nullable = false)
+	@Min(0)
+	private Float amount;
 
-    public User(String username, String password, String email, String firstName, String lastName) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.amount = 0f;
-    }
+	@OneToMany(mappedBy = "user", orphanRemoval = true)
+	@ToString.Exclude
+	private List<Bet> bets = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return userId != null && Objects.equals(userId, user.userId);
-    }
+	public User(
+			String username,
+			String password,
+			String email,
+			String firstName,
+			String lastName
+	) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.amount = 0f;
+	}
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (
+				o == null || Hibernate.getClass(this) != Hibernate.getClass(o)
+		) return false;
+		User user = (User) o;
+		return userId != null && Objects.equals(userId, user.userId);
+	}
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

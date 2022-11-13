@@ -11,52 +11,55 @@ import java.util.Date;
 
 @Component
 public class JwtTokenUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtils.class);
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(
+			JwtTokenUtils.class
+	);
 
-    private static final long EXPIRE_DURATION = 24 * 60 * 60 * 1000; // 24 hour TODO: Change this value and in the config file
+	private static final long EXPIRE_DURATION = 24 * 60 * 60 * 1000; // 24 hour TODO: Change this value and in the config file
 
-    @Value("${app.jwt.secret}")
-    private String SECRET_KEY;
+	@Value("${app.jwt.secret}")
+	private String SECRET_KEY;
 
-    public String generateAccessToken(User user) {
-        return Jwts.builder()
-                .setSubject(String.format("%s,%s", user.getUserId(), user.getEmail()))
-                .setIssuer("CodeJava") // TODO : modifier líssuer et le mettre dans le fichier de config
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-                .compact();
+	public String generateAccessToken(User user) {
+		return Jwts
+				.builder()
+				.setSubject(String.format("%s,%s", user.getUserId(), user.getEmail()))
+				.setIssuer("CodeJava") // TODO : modifier líssuer et le mettre dans le fichier de config
+				.setIssuedAt(new Date())
+				.setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
+				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+				.compact();
+	}
 
-    }
+	public boolean validateAccessToken(String token) {
+		try {
+			Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+			return true;
+		} catch (ExpiredJwtException ex) {
+			LOGGER.error("JWT expired", ex);
+		} catch (IllegalArgumentException ex) {
+			LOGGER.error("Token is null, empty or only whitespace", ex);
+		} catch (MalformedJwtException ex) {
+			LOGGER.error("JWT is invalid", ex);
+		} catch (UnsupportedJwtException ex) {
+			LOGGER.error("JWT is not supported", ex);
+		} catch (SignatureException ex) {
+			LOGGER.error("Signature validation failed");
+		}
 
-    public boolean validateAccessToken(String token) {
-        try {
-            Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
-            return true;
-        } catch (ExpiredJwtException ex) {
-            LOGGER.error("JWT expired", ex);
-        } catch (IllegalArgumentException ex) {
-            LOGGER.error("Token is null, empty or only whitespace", ex);
-        } catch (MalformedJwtException ex) {
-            LOGGER.error("JWT is invalid", ex);
-        } catch (UnsupportedJwtException ex) {
-            LOGGER.error("JWT is not supported", ex);
-        } catch (SignatureException ex) {
-            LOGGER.error("Signature validation failed");
-        }
+		return false;
+	}
 
-        return false;
-    }
+	public String getSubject(String token) {
+		return parseClaims(token).getSubject();
+	}
 
-    public String getSubject(String token) {
-        return parseClaims(token).getSubject();
-    }
-
-    private Claims parseClaims(String token) {
-        return Jwts.parser()
-                .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
-                .getBody();
-    }
+	private Claims parseClaims(String token) {
+		return Jwts
+				.parser()
+				.setSigningKey(SECRET_KEY)
+				.parseClaimsJws(token)
+				.getBody();
+	}
 }

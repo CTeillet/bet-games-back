@@ -20,45 +20,48 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Table(name = "match")
 public class Match {
-    @Id
-    @Column(name = "match_id", updatable = false, nullable = false)
-    private Long matchId;
 
-    @Column(nullable = false)
-    private SportEnum sport;
+	@Id
+	@Column(name = "match_id", updatable = false, nullable = false)
+	private Long matchId;
 
-    @Column(nullable = false)
-    private String league;
+	@Column(nullable = false)
+	private SportEnum sport;
 
-    @Column(name = "team_a")
-    private String teamA;
+	@Column(nullable = false)
+	private String league;
 
-    @Column(name = "team_b")
-    private String teamB;
+	@Column(name = "team_a")
+	private String teamA;
 
-    private Float cote;
+	@Column(name = "team_b")
+	private String teamB;
 
-    @Column(nullable = false)
-    private StatusMatchEnum status;
+	private Float cote;
 
-    private String winnerTeam;
+	@Column(nullable = false)
+	private StatusMatchEnum status;
 
-    private Date date;
+	private String winnerTeam;
 
-    @OneToMany(mappedBy = "match", orphanRemoval = true)
-    @ToString.Exclude
-    private List<Bet> bets = new ArrayList<>();
+	private Date date;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Match match = (Match) o;
-        return matchId != null && Objects.equals(matchId, match.matchId);
-    }
+	@OneToMany(mappedBy = "match", orphanRemoval = true)
+	@ToString.Exclude
+	private List<Bet> bets = new ArrayList<>();
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (
+				o == null || Hibernate.getClass(this) != Hibernate.getClass(o)
+		) return false;
+		Match match = (Match) o;
+		return matchId != null && Objects.equals(matchId, match.matchId);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

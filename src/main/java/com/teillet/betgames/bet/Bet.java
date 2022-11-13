@@ -19,54 +19,65 @@ import java.util.Objects;
 @Entity
 @Table(name = "bet")
 public class Bet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "bet_id", updatable = false, nullable = false)
-    private Long betId;
 
-    @Column(nullable = false)
-    private String winnerTeam;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "bet_id", updatable = false, nullable = false)
+	private Long betId;
 
-    @Column(nullable = false)
-    private float odds;
+	@Column(nullable = false)
+	private String winnerTeam;
 
-    @Column(nullable = false)
-    private float amount;
+	@Column(nullable = false)
+	private float odds;
 
-    @Column(nullable = false)
-    private ResultBetEnum resultBet;
+	@Column(nullable = false)
+	private float amount;
 
-    @Column(nullable = false)
-    private LocalDateTime date;
+	@Column(nullable = false)
+	private ResultBetEnum resultBet;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "match_id", nullable = false)
-    private Match match;
+	@Column(nullable = false)
+	private LocalDateTime date;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "match_id", nullable = false)
+	private Match match;
 
-    public Bet(String winnerTeam, float odds, float amount, ResultBetEnum resultBet, LocalDateTime date, Match match, User user) {
-        this.winnerTeam = winnerTeam;
-        this.odds = odds;
-        this.amount = amount;
-        this.resultBet = resultBet;
-        this.date = date;
-        this.match = match;
-        this.user = user;
-    }
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Bet bet = (Bet) o;
-        return betId != null && Objects.equals(betId, bet.betId);
-    }
+	public Bet(
+			String winnerTeam,
+			float odds,
+			float amount,
+			ResultBetEnum resultBet,
+			LocalDateTime date,
+			Match match,
+			User user
+	) {
+		this.winnerTeam = winnerTeam;
+		this.odds = odds;
+		this.amount = amount;
+		this.resultBet = resultBet;
+		this.date = date;
+		this.match = match;
+		this.user = user;
+	}
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (
+				o == null || Hibernate.getClass(this) != Hibernate.getClass(o)
+		) return false;
+		Bet bet = (Bet) o;
+		return betId != null && Objects.equals(betId, bet.betId);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }
