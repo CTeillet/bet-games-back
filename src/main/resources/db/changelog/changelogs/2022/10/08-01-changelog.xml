@@ -50,7 +50,7 @@
             <column name="email" type="VARCHAR(255)"/>
             <column name="first_name" type="VARCHAR(255)"/>
             <column name="last_name" type="VARCHAR(255)"/>
-            <column name="amount" type="FLOAT">
+            <column name="balance" type="FLOAT">
                 <constraints nullable="false"/>
             </column>
         </createTable>

@@ -20,17 +20,7 @@
       "summary": "Manage account",
       "description": "Create or delete an account",
       "get": {
-        "requestBody": {
-          "description": "The information to modify the user",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "required": true
-        },
+        "tags": [],
         "parameters": [
           {
             "deprecated": false,
@@ -46,18 +36,23 @@
         ],
         "responses": {
           "200": {
-            "description": "The user is created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": "Return the user",
             "x-last-modified": 1667085563844
           },
           "400": {
-            "$ref": "#/components/responses/400",
-            "x-last-modified": 1668376811558
+            "$ref": "#/components/responses/400"
           }
         },
         "operationId": "get-user",
         "summary": "Get the user with the specified id",
-        "description": "Return the user that match the id",
-        "tags": []
+        "description": "Return the user that match the id"
       },
       "put": {
         "requestBody": {
@@ -71,6 +66,7 @@
           },
           "required": true
         },
+        "tags": [],
         "responses": {
           "200": {
             "description": "The user is modified",
@@ -79,8 +75,7 @@
         },
         "operationId": "modify-user",
         "summary": "Modify the user with the id",
-        "description": "",
-        "tags": []
+        "description": ""
       },
       "post": {
         "requestBody": {
@@ -106,17 +101,18 @@
         "description": ""
       },
       "delete": {
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsernameRequest"
-              }
-            }
-          },
-          "required": false
-        },
         "tags": [],
+        "parameters": [
+          {
+            "name": "username-delete-user",
+            "description": "The username of the user we want to delete",
+            "schema": {
+              "$ref": "#/components/schemas/Username"
+            },
+            "in": "query",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "The user is created",
@@ -142,6 +138,7 @@
           },
           "required": false
         },
+        "tags": [],
         "responses": {
           "200": {
             "content": {
@@ -170,8 +167,7 @@
         },
         "operationId": "login",
         "summary": "Login the user",
-        "description": "This operation is used to login the user",
-        "tags": []
+        "description": "This operation is used to login the user"
       },
       "delete": {
         "requestBody": {
@@ -184,6 +180,7 @@
           },
           "required": false
         },
+        "tags": [],
         "responses": {
           "200": {
             "description": "The user is disconnected",
@@ -203,8 +200,7 @@
           }
         },
         "operationId": "logout",
-        "summary": "Logout the user",
-        "tags": []
+        "summary": "Logout the user"
       },
       "x-last-modified": 1668378201149
     }
@@ -385,7 +381,8 @@
           "password",
           "firstName",
           "lastName",
-          "birthDate"
+          "birthDate",
+          "balance"
         ],
         "type": "object",
         "properties": {
@@ -423,6 +420,14 @@
             "type": "string",
             "example": [
               "30/10/2022"
+            ]
+          },
+          "balance": {
+            "format": "double",
+            "minimum": 0,
+            "type": "number",
+            "example": [
+              100
             ]
           }
         },
@@ -629,9 +634,6 @@
         "description": "Example: \n> Authorization: Bearer <token>",
         "x-last-modified": 1668374308746
       }
-    },
-    "parameters": {}
-  },
-  "tags": [],
-  "security": []
+    }
+  }
 }

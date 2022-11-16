@@ -1,31 +1,40 @@
 package com.teillet.betgames.user;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.teillet.betgames.api.UserApi;
+import com.teillet.betgames.dto.UserDto;
+import org.springframework.http.ResponseEntity;
 
-@RestController
-@RequestMapping("/api/v1/user")
-public class UserController {
 
-	private final UserRepository userRepository;
+public class UserController implements UserApi {
+	private final UserService userService;
 
-	public UserController(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	private final UserUtils userUtils;
+
+	public UserController(UserService userService, UserUtils userUtils) {
+		this.userService = userService;
+		this.userUtils = userUtils;
 	}
 
-	@PostMapping
-	public String createUser(
-			@RequestParam String username,
-			@RequestParam String password,
-			@RequestParam String email,
-			@RequestParam String firstName,
-			@RequestParam String lastName
-	) {
-		User user = new User(username, password, email, firstName, lastName);
-		userRepository.save(user);
-		return "user";
+	@Override
+	public ResponseEntity<Void> deleteUser(String usernameDeleteUser) {
+		userService.delete(usernameDeleteUser);
+		return null;
 	}
 
+	@Override
+	public ResponseEntity<UserDto> getUser(String username) {
+		return ResponseEntity.ok(userUtils.convertToDto(userService.get(username)));
+	}
+
+	@Override
+	public ResponseEntity<Void> modifyUser(UserDto userDto) {
+		userService.modify(userUtils.convertToEntity(userDto));
+		return ResponseEntity.ok().build();
+	}
+
+	@Override
+	public ResponseEntity<Void> registerUser(UserDto userDto) {
+		userService.register(userUtils.convertToEntity(userDto));
+		return ResponseEntity.ok().build();
+	}
 }

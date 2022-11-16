@@ -1,0 +1,19 @@
+{
+  "additionalProperties": {
+    "artifactId": "BetGames",
+    "serializableModel": "true",
+    "dateLibrary": "java8",
+    "modelNameSuffix": "Dto",
+    "modelPackage": "com.teillet.betgames.dto",
+    "apiPackage": "com.teillet.betgames.api",
+    "inputSpec": "../../open-api.json",
+    "outputDir": "",
+    "generatorName": "spring",
+    "generateApiTests": "true",
+    "generateModelTests": "true",
+    "interfaceOnly": "true",
+    "skipDefaultInterface": "true",
+    "generateSupportingFiles": "false",
+    "enablePostProcessFile": "true"
+  }
+}

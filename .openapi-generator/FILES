@@ -1,0 +1,15 @@
+src/main/java/com/teillet/betgames/api/ApiUtil.java
+src/main/java/com/teillet/betgames/api/LoginApi.java
+src/main/java/com/teillet/betgames/api/UserApi.java
+src/main/java/com/teillet/betgames/dto/AuthRequestDto.java
+src/main/java/com/teillet/betgames/dto/AuthResponseDto.java
+src/main/java/com/teillet/betgames/dto/DeleteRequestDto.java
+src/main/java/com/teillet/betgames/dto/GameDto.java
+src/main/java/com/teillet/betgames/dto/GameLeaguesDto.java
+src/main/java/com/teillet/betgames/dto/IllegalInputErrorDto.java
+src/main/java/com/teillet/betgames/dto/LeagueDto.java
+src/main/java/com/teillet/betgames/dto/MatchDto.java
+src/main/java/com/teillet/betgames/dto/ServerErrorDto.java
+src/main/java/com/teillet/betgames/dto/UnauthorizedErrorDto.java
+src/main/java/com/teillet/betgames/dto/UserDto.java
+src/main/java/com/teillet/betgames/dto/UsernameRequestDto.java

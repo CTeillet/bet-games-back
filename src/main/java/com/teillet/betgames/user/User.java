@@ -45,7 +45,7 @@ public class User implements UserDetails {
 
 	@Column(nullable = false)
 	@Min(0)
-	private Float amount;
+	private Double balance;
 
 	@OneToMany(mappedBy = "user", orphanRemoval = true)
 	@ToString.Exclude
@@ -63,7 +63,7 @@ public class User implements UserDetails {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.amount = 0f;
+		this.balance = 0.;
 	}
 
 	@Override

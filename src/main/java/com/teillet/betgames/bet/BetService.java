@@ -39,7 +39,7 @@ public class BetService {
 		User user = userRepository.findById(idBettor).get();
 		if (
 				match.getStatus().equals(StatusMatchEnum.NOT_STARTED) &&
-						user.getAmount() >= amount
+						user.getBalance() >= amount
 		) {
 			Bet bet = new Bet(
 					winnerTeam,
@@ -51,7 +51,7 @@ public class BetService {
 					user
 			);
 			betRepository.save(bet);
-			user.setAmount(user.getAmount() - amount);
+			user.setBalance(user.getBalance() - amount);
 			userRepository.save(user);
 			return true;
 		}
@@ -64,7 +64,7 @@ public class BetService {
 		User user = bet.getUser();
 		if (bet.getResultBet().equals(ResultBetEnum.NOT_FINISHED)) {
 			betRepository.delete(bet);
-			user.setAmount(user.getAmount() + bet.getAmount());
+			user.setBalance(user.getBalance() + bet.getAmount());
 			userRepository.save(user);
 			return true;
 		}
