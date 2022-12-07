@@ -2,7 +2,10 @@ package com.teillet.betgames.authentication;
 
 import com.teillet.betgames.user.User;
 import com.teillet.betgames.utils.JwtTokenUtils;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,20 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-	private final JwtTokenUtils jwtUtil;
-
-	public JwtTokenFilter(JwtTokenUtils jwtUtil) {
-		this.jwtUtil = jwtUtil;
-	}
+	private final @NonNull JwtTokenUtils jwtUtil;
 
 	@Override
-	protected void doFilterInternal(
-			@NotNull HttpServletRequest request,
-			@NotNull HttpServletResponse response,
-			@NotNull FilterChain filterChain
-	) throws ServletException, IOException {
+	protected void doFilterInternal(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response,
+	                                @NotNull FilterChain filterChain) throws ServletException, IOException {
 		if (!hasAuthorizationBearer(request)) {
 			filterChain.doFilter(request, response);
 			return;
@@ -58,10 +55,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		return header.split(" ")[1].trim();
 	}
 
-	private void setAuthenticationContext(
-			String token,
-			HttpServletRequest request
-	) {
+	private void setAuthenticationContext(String token, HttpServletRequest request) {
 		UserDetails userDetails = getUserDetails(token);
 
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

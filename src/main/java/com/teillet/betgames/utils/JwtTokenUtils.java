@@ -12,9 +12,7 @@ import java.util.Date;
 @Component
 public class JwtTokenUtils {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(
-			JwtTokenUtils.class
-	);
+	private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtils.class);
 
 	private static final long EXPIRE_DURATION = 24 * 60 * 60 * 1000; // 24 hour TODO: Change this value and in the config file
 
@@ -25,7 +23,7 @@ public class JwtTokenUtils {
 		return Jwts
 				.builder()
 				.setSubject(String.format("%s,%s", user.getUserId(), user.getEmail()))
-				.setIssuer("CodeJava") // TODO : modifier líssuer et le mettre dans le fichier de config
+				.setIssuer("CodeJava") // TODO : modifier l'íssuer et le mettre dans le fichier de config
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
